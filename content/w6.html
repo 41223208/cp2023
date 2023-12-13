@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='W5.html'>W5</a><li><a href='w6.html'>w6</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='W5.html'>W5</a><li><a href='w6.html'>w6</a><li><a href='W7.html'>W7</a><li><a href='W8.html'>W8</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,7 +142,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">W5 << <a href='W5.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>w6</h1>
+    <div id="tipue_search_content">W5 << <a href='W5.html'>Previous</a> <a href='W7.html'>Next</a> >> W7<br /><h1>w6</h1>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">// https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China
 // cc roc_flag.c -lgd -lm to link with gd and math library
 // https://www.rapidtables.com/web/color/RGB_Color.html
@@ -213,15 +213,12 @@ void draw_white_sun(gdImagePtr img, int center_x, int center_y, int sun_radius, 
    }
 }</pre>
 <p><img alt="" height="267" src="./../images/roc_flag.png" width="400"/></p>
-<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">// https://en.wikipedia.org/wiki/Flag_of_the_United_States
-// https://www.britannica.com/topic/flag-of-the-United-States-of-America
-// 以下為幾乎要繪製完成的美國國旗, 請修改下列原始碼, 令其繪出正確的美國國旗
-#include &lt;stdio.h&gt;
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 #include &lt;gd.h&gt;
 #include &lt;math.h&gt;
 
 void draw_usa_flag(gdImagePtr img);
-void draw_star(gdImagePtr img, int x, int y, int size, int color);
+void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle);
 
 int main() {
     int width = 800;
@@ -234,7 +231,7 @@ int main() {
 
     FILE *outputFile = fopen("./../images/usa_flag.png", "wb");
     if (outputFile == NULL) {
-        fprintf(stderr, "Error opening the output file.\n");
+        fprintf(stderr, "打开输出文件时出错。\n");
         return 1;
     }
 
@@ -249,14 +246,14 @@ void draw_usa_flag(gdImagePtr img) {
     int width = gdImageSX(img);
     int height = gdImageSY(img);
     int red, white, blue;
-    // Colors for the flag
-    red = gdImageColorAllocate(img, 178, 34, 52); // Red stripes
-    white = gdImageColorAllocate(img, 255, 255, 255); // White stripes
-    blue = gdImageColorAllocate(img, 60, 59, 110); // Blue field
+    // 国旗颜色
+    red = gdImageColorAllocate(img, 178, 34, 52); // 红色条纹
+    white = gdImageColorAllocate(img, 255, 255, 255); // 白色条纹
+    blue = gdImageColorAllocate(img, 60, 59, 110); // 蓝色矩形
 
     int stripe_height = height / 13;
     int stripe_width = width;
-    int star_size = (int)(0.0308 * height); // Corrected star size (half the original size)
+    int star_size = (int)(0.0308 * height); // 星星大小
 
     for (int y = 0; y &lt; height; y += stripe_height) {
         if (y / stripe_height % 2 == 0) {
@@ -268,37 +265,44 @@ void draw_usa_flag(gdImagePtr img) {
 
     gdImageFilledRectangle(img, 0, 0, width * 2 / 5, stripe_height * 7, blue);
 
-    int star_spacing_x = (int)(0.063 * height); // Horizontal spacing between stars
-    int star_spacing_y = (int)(0.054 * height); // Vertical spacing between stars
-    int star_start_x = (int)(0.0616 * height); // Starting X position for stars
-    int star_start_y = (int)(0.0485 * height); // Starting Y position for stars
+    int star_spacing_x = (int)(0.129 * height); // 横向星星之间的间距
+    int star_spacing_y = (int)(0.054 * height); // 纵向星星之间的间距
+    int star_start_x = (int)(0.125 * height); // 星星的起始X位置
+    int star_start_y = (int)(0.0485 * height); // 星星的起始Y位置
 
     for (int row = 0; row &lt; 9; row++) {
         int starsPerRow = (row % 2 == 0) ? 6 : 5;
 
+        // 计算2、4、6和8排星星的偏移量
+        int offset_x = (row % 2 == 0) ? star_spacing_x / -2 : 0;
+
         for (int star = 0; star &lt; starsPerRow; star++) {
-            int x = star_start_x + star * star_spacing_x;
+            int x = star_start_x + star * star_spacing_x + offset_x;
+
+            // 旋转角度（以弧度为单位）
+            double rotation_angle = M_PI / 5; // 忘記多少度的旋转
+
             int y = star_start_y + row * star_spacing_y;
-            draw_star(img, x, y, star_size, white);
+            draw_star(img, x, y, star_size, white, rotation_angle);
         }
     }
 }
 
-void draw_star(gdImagePtr img, int x, int y, int size, int color) {
+void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle) {
     gdPoint points[10];
 
     for (int i = 0; i &lt; 10; i++) {
-        double angle = M_PI / 2 + i * 2 * M_PI / 10;
+        double angle = M_PI / 2 + i * 2 * M_PI / 10 + rotation_angle;
         int radius = (i % 2 == 0) ? size : size / 2;
         points[i].x = x + radius * cos(angle);
         points[i].y = y + radius * sin(angle);
     }
 
-    // Fill the star with white color
+    // 用指定的颜色填充星星
     gdImageFilledPolygon(img, points, 10, color);
-}
-</pre>
-<p><img alt="" height="211" src="./../images/usa_flag.png" width="400"/></p><br />W5 << <a href='W5.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+}</pre>
+<p><img alt="" height="211" src="./../images/usa_flag.png" width="400"/></p>
+<br />W5 << <a href='W5.html'>Previous</a> <a href='W7.html'>Next</a> >> W7</div>
         
     <!-- footer -->
       <div class="container">

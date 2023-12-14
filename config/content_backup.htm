@@ -1,6 +1,6 @@
 <h1>About</h1>
 <p><a href="https://github.com/mdecycu/cmsite"> https://github.com/mdecycu/cmsite</a></p>
-<h1>W5</h1>
+<h1>w5</h1>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
 // https://blog.csdn.net/weixin_38468077/article/details/101069365
 // http://www.gnuplot.info/demo/
@@ -210,8 +210,580 @@ void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotatio
     gdImageFilledPolygon(img, points, 10, color);
 }</pre>
 <p><img alt="" height="211" src="/images/usa_flag.png" width="400"/></p>
-<h1>Brython</h1>
-<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
+<h1>w7</h1>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+
+void draw_chinese_flag(gdImagePtr img);
+
+int main() {
+    int width = 300; // 國旗寬度
+    int height = 200; // 國旗高度
+
+    gdImagePtr im = gdImageCreateTrueColor(width, height);
+    gdImageAlphaBlending(im, 0);
+
+    draw_chinese_flag(im);
+
+    FILE *outputFile = fopen("./../images/proc_flag.png", "wb");
+    if (outputFile == NULL) {
+        fprintf(stderr, "打开输出文件时出错。\n");
+        return 1;
+    }
+
+    gdImagePngEx(im, outputFile, 9);
+    fclose(outputFile);
+    gdImageDestroy(im);
+
+    return 0;
+}
+
+// 声明 draw_star 函数
+void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle);
+
+void draw_chinese_flag(gdImagePtr img) {
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+    int red, yellow;
+
+    // 國旗顏色
+    red = gdImageColorAllocate(img, 255, 0, 0); // 紅色背景
+    yellow = gdImageColorAllocate(img, 255, 255, 0); // 黃色星星
+
+    // 畫紅色背景
+    gdImageFilledRectangle(img, 0, 0, width, height, red);
+
+    // 設置星星的大小和位置
+    int star_size = (int)(0.28 * height);
+    int star_x = (int)(0.165 * width);
+    int star_y = (int)(0.265 * height);
+
+    // 畫大星星
+    draw_star(img, star_x, star_y, star_size, yellow, 11.0);
+
+    // 繪製小星星，位置根據實際國旗比例計算
+    double radius = 0.15 * height;
+    double angle = 360 / 7 * M_PI / 179.0;
+    double rotation = -M_PI / 7.5;
+    int cx = (int)(0.32 * width);
+    int cy = (int)(0.27 * height);
+
+    for (int i = -1; i &lt; 3; i++) {
+        int x = (int)(cx + radius * cos(i * angle + rotation));
+        int y = (int)(cy + radius * sin(i * angle + rotation));
+        draw_star(img, x, y, 19, yellow, M_PI / 5.0);
+    }
+}
+
+void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle) {
+    gdPoint points[10];
+
+    // 计算星形的五个外点和五个内点
+    double outer_radius = size / 2;
+    double inner_radius = size / 6;
+    double angle = M_PI / 5.0;
+
+    for (int i = 0; i &lt; 10; i++) {
+        double radius = (i % 2 == 0) ? outer_radius : inner_radius;
+        double theta = rotation_angle + i * angle;
+        points[i].x = x + radius * cos(theta);
+        points[i].y = y + radius * sin(theta);
+    }
+
+    // 使用 gdImageFilledPolygon 绘制星形
+    gdImageFilledPolygon(img, points, 10, color);
+}</pre>
+<p><img alt="" height="267" src="/images/proc_flag.png" width="400"/></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+
+void draw_japan_flag(gdImagePtr img);
+void draw_white_sun(gdImagePtr img, int center_x, int center_y, int sun_radius, int white, int red );
+
+int main() {
+    // width 3: height 2
+    int width = 1200;
+    int height = 2 * width / 3;
+
+    gdImagePtr img = gdImageCreateTrueColor(width, height);
+    gdImageAlphaBlending(img, 0);
+
+    draw_japan_flag(img);
+
+    FILE *outputFile = fopen("./../images/japan_flag.png", "wb");
+    if (outputFile == NULL) {
+        fprintf(stderr, "Error opening the output file.\n");
+        return 1;
+    }
+    gdImagePngEx(img, outputFile, 9);
+    fclose(outputFile);
+    gdImageDestroy(img);
+    return 0;
+}
+
+void draw_japan_flag(gdImagePtr img) {
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+    int red, white ;
+    int center_x =  0.5 * width;
+    int center_y =  0.5 * height;
+    int sun_radius = 145 ;
+
+    // Colors for the flag
+    red = gdImageColorAllocate(img, 242, 0, 0); // Red color
+    white = gdImageColorAllocate(img, 255, 255, 255); // White stripes
+
+
+    // 繪製白色矩形區域
+    gdImageFilledRectangle(img, 0, 0, width, height, white);
+
+
+    // 繪製太陽內部
+    gdImageFilledEllipse(img, center_x, center_y, sun_radius * 3, sun_radius * 3, red);
+}</pre>
+<p><img alt="" height="267" src="/images/japan_flag.png" width="400"/></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+
+void draw_uk_flag(gdImagePtr img);
+void fillTriangle(gdImagePtr img, int x1, int y1, int x2, int y2, int x3, int y3, int color);
+
+int main() {
+    // 设置国旗的宽和高
+    int width = 1200;
+    int height = width / 2;
+
+    // 创建图像
+    gdImagePtr img = gdImageCreateTrueColor(width, height);
+    gdImageAlphaBlending(img, 0);
+
+    // 绘制英国国旗
+    draw_uk_flag(img);
+
+    // 将图像保存到文件
+    FILE *outputFile = fopen("./../images/uk_flag.png", "wb");
+    if (outputFile == NULL) {
+        fprintf(stderr, "打开输出文件时发生错误。\n");
+        return 1;
+    }
+    gdImagePngEx(img, outputFile, 9);
+    fclose(outputFile);
+    gdImageDestroy(img);
+    return 0;
+}
+
+
+
+void draw_uk_flag(gdImagePtr img) {
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+
+    int red, white, blue;
+    red = gdImageColorAllocate(img, 204, 0, 0);       // 红色
+    white = gdImageColorAllocate(img, 255, 255, 255); // 白色
+    blue = gdImageColorAllocate(img, 0, 0, 153);      // 蓝色
+
+    gdImageFilledRectangle(img, 0, 0, width, height, blue);
+
+
+  int x1, y1, x2, y2, x3, y3;
+  {
+    int line_thickness = 100;
+    gdImageSetThickness(img, line_thickness);
+
+    int x1, y1, x2, y2, x3, y3;
+
+    // 绘制白色斜线
+    x1 = 0;
+    y1 = 600;
+    x2 = 1200;
+    y2 = 0;
+    gdImageLine(img, x1, y1, x2, y2, white);
+
+    x1 = 0;
+    y1 = 0;
+    x2 = 1200;
+    y2 = 600;
+    gdImageLine(img, x1, y1, x2, y2, white);
+}
+  {
+    int line_thickness = 33;
+    gdImageSetThickness(img, line_thickness);
+
+
+    // 绘制红色斜线
+    x1 = 566;
+    y1 = 300;
+    x2 = 1166;
+    y2 = 0;
+    gdImageLine(img, x1, y1, x2, y2, red);
+
+    x1 = 1233;
+    y1 = 600;
+    x2 = 633;
+    y2 = 300;
+    gdImageLine(img, x1, y1, x2, y2, red);
+
+    x1 = 566;
+    y1 = 300;
+    x2 = -33;
+    y2 = 0;
+    gdImageLine(img, x1, y1, x2, y2, red);
+
+    x1 = 600;
+    y1 = 316.5;
+    x2 = 0;
+    y2 = 616.5;
+    gdImageLine(img, x1, y1, x2, y2, red);
+  }
+  {
+  int line_thickness = 33;
+  gdImageSetThickness(img, line_thickness);
+
+  int x1, y1, x2, y2, x3, y3;
+
+  // 绘制  斜线
+  x1 = 0;
+  y1 = 600;
+  x2 = 1200;
+  y2 = 0;
+  gdImageLine(img, x1, y1, x2, y2, red );
+
+
+  x1 = 1200;
+    y1 = 16.5;
+    x2 = 600;
+    y2 = 316.5;
+    gdImageLine(img, x1, y1, x2, y2, white);
+
+
+  x1 = 0;
+    y1 = 583.5;
+    x2 = 600;
+    y2 = 283.5;
+    gdImageLine(img, x1, y1, x2, y2, white);
+
+
+  }
+
+    // 绘制白色十字
+    int cross_width = width / 32;
+    int cross_arm_width = width / 32;
+    int center_x = width / 2;
+    int center_y = height / 2;
+
+    gdImageFilledRectangle(img, center_x + 2.7 * cross_width, 0, center_x - 2.7 * cross_width, height, white);
+    gdImageFilledRectangle(img, 0, center_y + 2.7 * cross_arm_width, width, center_y - 2.7 * cross_arm_width, white);
+
+    // 绘制红色十字
+    gdImageFilledRectangle(img, center_x + 1.5 * cross_width, 0, center_x - 1.5 * cross_width, height, red);
+    gdImageFilledRectangle(img, 0, center_y + 1.5 * cross_arm_width, width, center_y - 1.5 * cross_arm_width, red);
+} </pre>
+<p><img alt="" height="200" src="/images/uk_flag.png" width="400"/></p>
+<h1>ANSIC</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;   // 包含標準輸入/輸出頭文件。
+
+void main()
+{
+    float PerHeight;   // 宣告一個浮點數變數 'PerHeight' 來儲存人的身高。
+
+    printf("輸入人的身高（以厘米為單位）：");   // 提示用戶輸入身高（以厘米為單位）。
+    scanf("%f", &amp;PerHeight);   // 讀取並將用戶的輸入存儲在 'PerHeight' 中。
+
+    if (PerHeight &lt; 150.0)   // 檢查 'PerHeight' 是否小於 150.0。
+        printf("這個人是矮子。\n");   // 印出一條消息，指示這個人是矮子。
+    else if ((PerHeight &gt;= 150.0) &amp;&amp; (PerHeight &lt; 165.0))   // 檢查 'PerHeight' 是否介於 150.0 和 165.0 之間。
+        printf("這個人身高屬於平均水平。\n");   // 印出一條消息，指示這個人身高屬於平均水平。
+    else if ((PerHeight &gt;= 165.0) &amp;&amp; (PerHeight &lt;= 195.0))   // 檢查 'PerHeight' 是否介於 165.0 和 195.0 之間。
+        printf("這個人是較高的。\n");   // 印出一條消息，指示這個人身高較高。
+    else
+        printf("身高異常。\n");   // 印出一條消息，指示身高異常。
+}
+</pre>
+<p><img alt="" height="345" src="/images/螢幕擷取畫面 2023-12-14 130047.png" width="400"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;     // 包含標準輸入/輸出頭文件。
+
+float temp_f;     /* 華氏度 */
+float temp_c;     /* 攝氏度 */
+char line_text[50];        /* 一行輸入 */
+
+int main() {
+    printf("輸入溫度（攝氏度）：");  // 提示用戶輸入攝氏溫度。
+    fgets(line_text, sizeof(line_text), stdin);      // 從用戶讀取一行輸入並存儲在 'line_text' 中。
+    sscanf(line_text, "%f", &amp;temp_c);               // 將 'line_text' 中的輸入轉換為浮點數並存儲在 'temp_c' 中。
+
+    temp_f = ((9.0 / 5.0) * temp_c) + 32.0;         // 將攝氏溫度轉換為華氏溫度並存儲在 'temp_f' 中。
+    printf("%f degrees Fahrenheit.\n", temp_f);    // 以華氏度打印溫度。
+
+    return(0);   // 返回0以表示程序成功執行。
+}
+</pre>
+<p><img alt="" height="315" src="/images/螢幕擷取畫面 2023-12-14 666.png" width="400"/></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#define __STDC_WANT_LIB_EXT1__ 1/這一行是一個預處理器指令，用來啟用C標準庫的擴展功能。在這裡，它啟用了擴展函數 ctime_s
+#include &lt;time.h&gt;/這裡包含了標準的時間頭文件，其中包含了一些與時間相關的函數和結構。
+#include &lt;stdio.h&gt; /這裡包含了標準的輸入/輸出頭文件，以便使用 printf 函數輸出信息。
+
+int main(void)/這是程序的主函數的開始
+{
+    time_t result = time(NULL);/使用 time 函數獲取當前的時間，返回的結果存儲在 result 變數中。
+    printf("\n%s\n", ctime(&amp;result));/ 使用 ctime 函數將時間轉換為可讀的字符串格式，並通過 printf 函數打印出來。
+#ifdef __STDC_LIB_EXT1__/這是一個條件編譯指令，用於檢查是否支持標準庫的擴展功能。
+    char time_str[26];
+    ctime_s(time_str,sizeof time_str,&amp;result);/如果支持擴展功能，則使用 ctime_s 函數將時間轉換為可讀的字符串格式，並將結果存儲在 time_str 中。
+    printf("\n%s\n", time_str);/通過 printf 函數打印使用 ctime_s 轉換後的時間字符串。
+#endif
+}</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="247" src="/images/螢幕擷取畫面 2023-12-14 777.png" width="400"/></a></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;  
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    time_t cur_time;         // 定義一個 time_t 型變數 cur_time 來存儲當前時間。
+    char* cur_t_string;      // 定義一個指向字符的指針 cur_t_string，用來存儲轉換後的時間字符串。
+
+    cur_time = time(NULL);   // 使用 time 函數獲取當前時間，並將其存儲在 cur_time 變數中。
+
+    if (cur_time == ((time_t)-1))
+    {
+        // 如果獲取當前時間失敗，輸出錯誤信息並以失敗的狀態退出程序。
+        (void) fprintf(stderr, "無法獲取當前日期和時間。\n");
+        exit(EXIT_FAILURE);
+    }
+
+    cur_t_string = ctime(&amp;cur_time); // 將 cur_time 中的時間轉換為本地時間格式，並將結果存儲在 cur_t_string 中。
+
+    if (cur_t_string == NULL)
+    {
+        // 如果轉換時間失敗，輸出錯誤信息並以失敗的狀態退出程序。
+        (void) fprintf(stderr, "無法轉換當前日期和時間。\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // 通過 printf 函數輸出轉換後的時間字符串。
+    (void) printf("\n當前時間為：%s\n", cur_t_string);
+
+    // 退出程序，表示成功執行。
+    exit(EXIT_SUCCESS);
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="191" src="/images/螢幕擷取畫面 2023-12-14 888.png" width="400"/></a></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;    // 包含標準輸入/輸出頭文件。
+
+int main() {
+    char firstname[20], lastname[20];   // 宣告用於存儲名字和姓氏的字符數組，每個最大大小為20個字符。
+    int bir_year;   // 宣告一個整數變數 'bir_year' 來存儲出生年份。
+
+    printf("輸入您的名字：");   // 提示用戶輸入他們的名字。
+    scanf("%s", firstname);   // 讀取並將用戶的輸入存儲在 'firstname' 中。
+
+    printf("輸入您的姓氏：");   // 提示用戶輸入他們的姓氏。
+    scanf("%s", lastname);   // 讀取並將用戶的輸入存儲在 'lastname' 中。
+
+    printf("輸入您的出生年份：");   // 提示用戶輸入他們的出生年份。
+    scanf("%d", &amp;bir_year);   // 讀取並將用戶的輸入存儲在 'bir_year' 中。
+
+    printf("%s %s %d\n", firstname, lastname, bir_year);   // 打印名字、姓氏和出生年份。
+
+    return 0;   // 返回0以表示程序成功執行。
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="396" src="/images/螢幕擷取畫面 2023-12-14 999.png" width="400"/></a></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false"># include &lt;stdio.h&gt;
+# include &lt;string.h&gt;
+
+int main()
+{
+    int n, x = 0;
+    printf("\n\n 檢查一個給定數字是否是醜數：\n");
+    printf("----------------------------------------------------\n");
+    printf("輸入一個整數數字：");
+    scanf("%d", &amp;n);
+
+    if (n &lt;= 0) {  
+        printf("輸入正確的數字。");  
+    }
+
+    while (n != 1) 
+    {  
+        if (n % 5 == 0) 
+        {  
+            n /= 5;  
+        } 
+        else if (n % 3 == 0) 
+        {  
+            n /= 3;  
+        } 
+        else if (n % 2 == 0) 
+        {  
+            n /= 2;  
+        } 
+        else 
+        {  
+            printf("它不是一個醜數。\n"); 
+            x = 1;  
+            break;  
+        }  
+    } 
+
+    if (x == 0) 
+    { 
+        printf("它是一個醜數。\n");
+    }
+    
+    return 0;
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="429" src="/images/螢幕擷取畫面 2023-12-14 000.png" width="400"/></a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;     // 包含標準輸入/輸出頭文件。
+float kmph;              /* 每小時公里數 */
+float miph;              /* 每小時英里數（將要計算的） */
+char  line_text[50];      /* 來自鍵盤的一行輸入 */
+
+int main()
+{
+    printf("輸入每小時公里數：");   // 提示用戶輸入每小時公里數。
+    fgets(line_text, sizeof(line_text), stdin);   // 從用戶讀取一行輸入並將其存儲在 'line_text' 中。
+    sscanf(line_text, "%f", &amp;kmph);   // 將輸入轉換為浮點數並存儲在 'kmph' 中。
+
+    miph = (kmph * 0.6213712);   // 將每小時公里數轉換為每小時英里數。
+    printf("%f 英里每小時\n", miph);   // 將結果以英里每小時打印出來。
+
+    return 0;   // 返回0以表示程序成功執行。
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="343" src="/images/螢幕擷取畫面 2023-12-14 555.png" width="400"/></a></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+void main(void)
+{
+    int m = 10, n, o;
+    int *z = &amp;m;
+
+    printf("\n\n 指針：展示指針的基本聲明：\n");
+    printf("-------------------------------------------------------\n");
+    printf(" 這裡有 m=10，n 和 o 是兩個整數變量，*z 是一個整數\n");
+    printf("\n\n z 存儲 m 的地址 = %p\n", z); // z 是一個指針，所以 %p 會印出地址
+    printf("\n *z 存儲 m 的值 = %i\n", *z);
+    printf("\n &amp;m 是 m 的地址 = %p\n", &amp;m); // &amp;m 給出整數變量 m 的地址，所以 %p 是對應的格式符號
+    printf("\n &amp;n 存儲 n 的地址 = %p\n", &amp;n);
+    printf("\n &amp;o 存儲 o 的地址 = %p\n", &amp;o);
+    printf("\n &amp;z 存儲 z 的地址 = %p\n\n", &amp;z); // &amp;z 給出指針 z 的存儲地址，仍然是一個地址，%p 是正確的格式符號
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="383" src="/images/螢幕擷取畫面 2023-12-14 444.png" width="400"/></a></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;     // 包含標準輸入/輸出頭文件。
+#include&lt;stdlib.h&gt;    // 包含標準庫頭文件。
+#include&lt;time.h&gt;      // 包含時間頭文件，用於生成隨機數。
+
+int main ()           // 主函數的開始。
+{
+    int number, input;   // 宣告兩個整數變數 'number' 和 'input'。
+
+    srand ( time(NULL) );   // 使用當前時間初始化隨機種子。
+
+    number = rand() % 10 + 1;   // 生成一個介於1和10之間的隨機數並存儲在 'number' 中。
+
+    do {   // 開始一個do-while循環。
+        printf ("\n猜測數字（1到10）：");   // 輸出提示用戶猜測數字的消息。
+        scanf ("%d", &amp;input);    // 讀取用戶的輸入並存儲在 'input' 中。
+
+        if (number &gt; input)   // 如果隨機數大於用戶的輸入。
+            printf ("該數字較大\n");   // 輸出消息指示該數字較大。
+
+    } while (number != input);   // 只要用戶的輸入不等於隨機數，就繼續循環。
+
+    printf ("答對了！\n\n");   // 輸出消息指示用戶猜對了。
+
+    return 0;   // 返回0以表示程序成功執行。
+}   // 主函數的結尾。
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="289" src="/images/螢幕擷取畫面 2023-12-14 222.png" width="400"/></a></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+double square(double num)
+{
+    return (num * num);
+}
+
+int main()
+{
+    int num;
+    double n;
+
+    printf("\n\n 函數：計算任意數的平方 :\n");
+    printf("------------------------------------------------\n");	
+
+    printf("輸入任意數以計算平方 : ");
+    scanf("%d", &amp;num);
+
+    n = square(num);
+    printf("%d 的平方是 : %.2f\n", num, n); 
+
+    return 0;
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="361" src="/images/螢幕擷取畫面 2023-12-14 111.png" width="400"/></a></p>
+<h1>w13</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
+#include &lt;stdio.h&gt;
+
+// 主函式
+int main() {
+    // Open a file to write displacement and velocity data
+    FILE *outputFile = fopen("motion_data.txt", "w");
+    if (!outputFile) {
+        fprintf(stderr, "Failed to create data file.\n");
+        return 1;
+    }
+
+    // Simulate motion for 10 seconds and calculate displacement and velocity, while writing data to the file
+    double x = 0.2;  // Initial displacement
+    double v = 0.0;  // Initial velocity
+    double dt = 0.01; // Time step
+    double t = 0.0;  // Time
+
+    while (t &lt;= 10.0) {
+        double acceleration = (-10.0 * x - 0.5 * v) / 1.0; // Modified system parameters here
+        v += acceleration * dt;
+        x += v * dt;
+
+        fprintf(outputFile, "%lf %lf %lf\n", t, x, v);
+
+        t += dt;
+    }
+
+    // Close the data file
+    fclose(outputFile);
+
+    // Start a Gnuplot process using popen
+    FILE *gnuplotPipe = popen("gnuplot -persistent", "w");
+    if (!gnuplotPipe) {
+        fprintf(stderr, "Failed to start Gnuplot.\n");
+        return 1;
+    }
+
+    // Use Gnuplot plotting commands, specify font and output as PNG
+    fprintf(gnuplotPipe, "set terminal pngcairo enhanced font 'default,10' size 800,400\n");
+    fprintf(gnuplotPipe, "set output './../images/motion_plot.png'\n");
+    fprintf(gnuplotPipe, "set title 'Displacement and Velocity vs. Time'\n");
+    fprintf(gnuplotPipe, "set xlabel 'Time (s)'\n");
+    fprintf(gnuplotPipe, "set ylabel 'Displacement (m)'\n");
+    fprintf(gnuplotPipe, "plot 'motion_data.txt' using 1:2 with lines lw 2 title 'Displacement', \
+                             'motion_data.txt' using 1:3 with lines lw 2 title 'Velocity'\n");
+
+    // Close the Gnuplot process
+    fprintf(gnuplotPipe, "exit\n");
+    pclose(gnuplotPipe);
+
+    return 0;
+}</pre>
+<h6 style="text-align: left;"><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="200" src="/images/motion_plot.png" width="400"/></a></h6>
+<h1><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Brython<br/><strong></strong></a></h1>
+<h6><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><strong>https://en.wikipedia.org/wiki/Python_(programming_language)</strong></a></h6>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
 <p style="padding-left: 30px;"><a href="https://www.geeksforgeeks.org/python-programming-examples/">https://www.geeksforgeeks.org/python-programming-examples/</a></p>

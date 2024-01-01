@@ -2,7 +2,7 @@
         <head>
         <title>cmsite</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li class='has-children'><a href='ex_1.html'>ex_1</a><ul class='dropdown'><li class='has-children'><a href='練習1.html'>練習1</a><ul class='dropdown'><li><a href='1.輸入數字判斷高於平均身高或低於平均身高或處於平均.html'>1.輸入數字判斷高於平均身高或低於平均身高或處於平均</a><li><a href='2.輸入攝氏度轉換華氏度.html'>2.輸入攝氏度轉換華氏度</a><li><a href='3.用C語言函數獲取當前時間.html'>3.用C語言函數獲取當前時間</a><li><a href='4.用 C 語言寫一個程式來列印目前日期和時間.html'>4.用 C 語言寫一個程式來列印目前日期和時間</a><li><a href='5.輸入名字、姓氏及出生年份.html'>5.輸入名字、姓氏及出生年份</a><li><a href='6.檢查數字是否為醜數.html'>6.檢查數字是否為醜數</a><li><a href='8.顯示兩個整數變量.html'>8.顯示兩個整數變量</a><li><a href='9.輸入1-10的整數查看哪個為正確.html'>9.輸入1-10的整數查看哪個為正確</a><li><a href='10.輸入任意數的平方.html'>10.輸入任意數的平方</a></li></li></ul></ul><li class='has-children'><a href='ex_2.html'>ex_2</a><ul class='dropdown'><li class='has-children'><a href='1.(||)運算元傳回值與 (&&) 一樣, 但不同的是, 當 (||) 運算元兩邊的運算子之值都為 0 時, 則會傳回 0, 否則傳回 1.html'>1.(||)運算元傳回值與 (&&) 一樣, 但不同的是, 當 (||) 運算元兩邊的運算子之值都為 0 時, 則會傳回 0, 否則傳回 1</a><ul class='dropdown'><li><a href='2.sizeof( type ) 取得特定型別的 size.html'>2.sizeof( type ) 取得特定型別的 size</a><li><a href='3.C 有3個邏輯運算元, 基本上常與條件判斷運算合用.html'>3.C 有3個邏輯運算元, 基本上常與條件判斷運算合用</a><li><a href='4.位元運算元.html'>4.位元運算元</a><li><a href='5.關係運算元.html'>5.關係運算元</a><li><a href='6.算術運算元.html'>6.算術運算元</a><li><a href='7.C 的基本型態.html'>7.C 的基本型態</a><li><a href='8.C 的基本型態.html'>8.C 的基本型態</a><li><a href='9.C 的浮點數.html'>9.C 的浮點數</a><li><a href='10.C 的輸出與輸入的函數.html'>10.C 的輸出與輸入的函數</a></li></li></ul></ul><li><a href='w11.html'>w11</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='ANSIC.html'>ANSIC</a><li class='has-children'><a href='c_ex.html'>c_ex</a><ul class='dropdown'><li><a href='練習一.html'>練習一</a><li><a href='練習二.html'>練習二</a></li></ul><li><a href='w11.html'>w11</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,7 +142,123 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">5.輸入名字、姓氏及出生年份 << <a href='5.輸入名字、姓氏及出生年份.html'>Previous</a> <a href='8.顯示兩個整數變量.html'>Next</a> >> 8.顯示兩個整數變量<br /><h1>6.檢查數字是否為醜數</h1>
+    <div id="tipue_search_content">w7 << <a href='w7.html'>Previous</a> <a href='c_ex.html'>Next</a> >> c_ex<br /><h1>ANSIC</h1>
+<p><strong>練習1</strong></p>
+<p><strong>1.輸入數字判斷高於平均身高或低於平均身高或處於平均</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;   // 包含標準輸入/輸出頭文件。
+
+void main()
+{
+    float PerHeight;   // 宣告一個浮點數變數 'PerHeight' 來儲存人的身高。
+
+    printf("輸入人的身高（以厘米為單位）：");   // 提示用戶輸入身高（以厘米為單位）。
+    scanf("%f", &amp;PerHeight);   // 讀取並將用戶的輸入存儲在 'PerHeight' 中。
+
+    if (PerHeight &lt; 150.0)   // 檢查 'PerHeight' 是否小於 150.0。
+        printf("這個人是矮子。\n");   // 印出一條消息，指示這個人是矮子。
+    else if ((PerHeight &gt;= 150.0) &amp;&amp; (PerHeight &lt; 165.0))   // 檢查 'PerHeight' 是否介於 150.0 和 165.0 之間。
+        printf("這個人身高屬於平均水平。\n");   // 印出一條消息，指示這個人身高屬於平均水平。
+    else if ((PerHeight &gt;= 165.0) &amp;&amp; (PerHeight &lt;= 195.0))   // 檢查 'PerHeight' 是否介於 165.0 和 195.0 之間。
+        printf("這個人是較高的。\n");   // 印出一條消息，指示這個人身高較高。
+    else
+        printf("身高異常。\n");   // 印出一條消息，指示身高異常。
+}
+</pre>
+<p><img alt="" height="345" src="./../images/螢幕擷取畫面 2023-12-14 130047.png" width="400"/></p>
+<p><strong>2.輸入攝氏度轉換華氏度</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;     // 包含標準輸入/輸出頭文件。
+
+float temp_f;     /* 華氏度 */
+float temp_c;     /* 攝氏度 */
+char line_text[50];        /* 一行輸入 */
+
+int main() {
+    printf("輸入溫度（攝氏度）：");  // 提示用戶輸入攝氏溫度。
+    fgets(line_text, sizeof(line_text), stdin);      // 從用戶讀取一行輸入並存儲在 'line_text' 中。
+    sscanf(line_text, "%f", &amp;temp_c);               // 將 'line_text' 中的輸入轉換為浮點數並存儲在 'temp_c' 中。
+
+    temp_f = ((9.0 / 5.0) * temp_c) + 32.0;         // 將攝氏溫度轉換為華氏溫度並存儲在 'temp_f' 中。
+    printf("%f degrees Fahrenheit.\n", temp_f);    // 以華氏度打印溫度。
+
+    return(0);   // 返回0以表示程序成功執行。
+}
+</pre>
+<p><img alt="" height="315" src="./../images/螢幕擷取畫面 2023-12-14 666.png" width="400"/></p>
+<p><strong>3.用C語言函數獲取當前時間</strong></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#define __STDC_WANT_LIB_EXT1__ 1/這一行是一個預處理器指令，用來啟用C標準庫的擴展功能。在這裡，它啟用了擴展函數 ctime_s
+#include &lt;time.h&gt;/這裡包含了標準的時間頭文件，其中包含了一些與時間相關的函數和結構。
+#include &lt;stdio.h&gt; /這裡包含了標準的輸入/輸出頭文件，以便使用 printf 函數輸出信息。
+
+int main(void)/這是程序的主函數的開始
+{
+    time_t result = time(NULL);/使用 time 函數獲取當前的時間，返回的結果存儲在 result 變數中。
+    printf("\n%s\n", ctime(&amp;result));/ 使用 ctime 函數將時間轉換為可讀的字符串格式，並通過 printf 函數打印出來。
+#ifdef __STDC_LIB_EXT1__/這是一個條件編譯指令，用於檢查是否支持標準庫的擴展功能。
+    char time_str[26];
+    ctime_s(time_str,sizeof time_str,&amp;result);/如果支持擴展功能，則使用 ctime_s 函數將時間轉換為可讀的字符串格式，並將結果存儲在 time_str 中。
+    printf("\n%s\n", time_str);/通過 printf 函數打印使用 ctime_s 轉換後的時間字符串。
+#endif
+}</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="247" src="./../images/螢幕擷取畫面 2023-12-14 777.png" width="400"/></a></p>
+<p><strong>4.用C語言寫一個程式來列印目前日期和時間</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;  
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    time_t cur_time;         // 定義一個 time_t 型變數 cur_time 來存儲當前時間。
+    char* cur_t_string;      // 定義一個指向字符的指針 cur_t_string，用來存儲轉換後的時間字符串。
+
+    cur_time = time(NULL);   // 使用 time 函數獲取當前時間，並將其存儲在 cur_time 變數中。
+
+    if (cur_time == ((time_t)-1))
+    {
+        // 如果獲取當前時間失敗，輸出錯誤信息並以失敗的狀態退出程序。
+        (void) fprintf(stderr, "無法獲取當前日期和時間。\n");
+        exit(EXIT_FAILURE);
+    }
+
+    cur_t_string = ctime(&amp;cur_time); // 將 cur_time 中的時間轉換為本地時間格式，並將結果存儲在 cur_t_string 中。
+
+    if (cur_t_string == NULL)
+    {
+        // 如果轉換時間失敗，輸出錯誤信息並以失敗的狀態退出程序。
+        (void) fprintf(stderr, "無法轉換當前日期和時間。\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // 通過 printf 函數輸出轉換後的時間字符串。
+    (void) printf("\n當前時間為：%s\n", cur_t_string);
+
+    // 退出程序，表示成功執行。
+    exit(EXIT_SUCCESS);
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="191" src="./../images/螢幕擷取畫面 2023-12-14 888.png" width="400"/></a></p>
+<p><strong>5.輸入名字、姓氏及出生年份</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;    // 包含標準輸入/輸出頭文件。
+
+int main() {
+    char firstname[20], lastname[20];   // 宣告用於存儲名字和姓氏的字符數組，每個最大大小為20個字符。
+    int bir_year;   // 宣告一個整數變數 'bir_year' 來存儲出生年份。
+
+    printf("輸入您的名字：");   // 提示用戶輸入他們的名字。
+    scanf("%s", firstname);   // 讀取並將用戶的輸入存儲在 'firstname' 中。
+
+    printf("輸入您的姓氏：");   // 提示用戶輸入他們的姓氏。
+    scanf("%s", lastname);   // 讀取並將用戶的輸入存儲在 'lastname' 中。
+
+    printf("輸入您的出生年份：");   // 提示用戶輸入他們的出生年份。
+    scanf("%d", &amp;bir_year);   // 讀取並將用戶的輸入存儲在 'bir_year' 中。
+
+    printf("%s %s %d\n", firstname, lastname, bir_year);   // 打印名字、姓氏和出生年份。
+
+    return 0;   // 返回0以表示程序成功執行。
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="396" src="./../images/螢幕擷取畫面 2023-12-14 999.png" width="400"/></a></p>
+<p><strong>6.檢查數字是否為醜數</strong></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false"># include &lt;stdio.h&gt;
 # include &lt;string.h&gt;
 
@@ -189,7 +305,7 @@ int main()
 }
 </pre>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="429" src="./../images/螢幕擷取畫面 2023-12-14 000.png" width="400"/></a></p>
-<p><br/>7.<span>將公里每小時轉換為英哩每小時</span></p>
+<p><strong>7.將公里每小時轉換為英哩每小時</strong></p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;     // 包含標準輸入/輸出頭文件。
 float kmph;              /* 每小時公里數 */
 float miph;              /* 每小時英里數（將要計算的） */
@@ -208,7 +324,83 @@ int main()
 }
 </pre>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="343" src="./../images/螢幕擷取畫面 2023-12-14 555.png" width="400"/></a></p>
-<br />5.輸入名字、姓氏及出生年份 << <a href='5.輸入名字、姓氏及出生年份.html'>Previous</a> <a href='8.顯示兩個整數變量.html'>Next</a> >> 8.顯示兩個整數變量</div>
+<p><strong>8.顯示兩個整數變量</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+void main(void)
+{
+    int m = 10, n, o;
+    int *z = &amp;m;
+
+    printf("\n\n 指針：展示指針的基本聲明：\n");
+    printf("-------------------------------------------------------\n");
+    printf(" 這裡有 m=10，n 和 o 是兩個整數變量，*z 是一個整數\n");
+    printf("\n\n z 存儲 m 的地址 = %p\n", z); // z 是一個指針，所以 %p 會印出地址
+    printf("\n *z 存儲 m 的值 = %i\n", *z);
+    printf("\n &amp;m 是 m 的地址 = %p\n", &amp;m); // &amp;m 給出整數變量 m 的地址，所以 %p 是對應的格式符號
+    printf("\n &amp;n 存儲 n 的地址 = %p\n", &amp;n);
+    printf("\n &amp;o 存儲 o 的地址 = %p\n", &amp;o);
+    printf("\n &amp;z 存儲 z 的地址 = %p\n\n", &amp;z); // &amp;z 給出指針 z 的存儲地址，仍然是一個地址，%p 是正確的格式符號
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="383" src="./../images/螢幕擷取畫面 2023-12-14 444.png" width="400"/></a></p>
+<p><strong>9.輸入1-10的整數查看哪個為正確</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;     // 包含標準輸入/輸出頭文件。
+#include&lt;stdlib.h&gt;    // 包含標準庫頭文件。
+#include&lt;time.h&gt;      // 包含時間頭文件，用於生成隨機數。
+
+int main ()           // 主函數的開始。
+{
+    int number, input;   // 宣告兩個整數變數 'number' 和 'input'。
+
+    srand ( time(NULL) );   // 使用當前時間初始化隨機種子。
+
+    number = rand() % 10 + 1;   // 生成一個介於1和10之間的隨機數並存儲在 'number' 中。
+
+    do {   // 開始一個do-while循環。
+        printf ("\n猜測數字（1到10）：");   // 輸出提示用戶猜測數字的消息。
+        scanf ("%d", &amp;input);    // 讀取用戶的輸入並存儲在 'input' 中。
+
+        if (number &gt; input)   // 如果隨機數大於用戶的輸入。
+            printf ("該數字較大\n");   // 輸出消息指示該數字較大。
+
+    } while (number != input);   // 只要用戶的輸入不等於隨機數，就繼續循環。
+
+    printf ("答對了！\n\n");   // 輸出消息指示用戶猜對了。
+
+    return 0;   // 返回0以表示程序成功執行。
+}   // 主函數的結尾。
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="289" src="./../images/螢幕擷取畫面 2023-12-14 222.png" width="400"/></a></p>
+<p><strong>10.輸入任意數的平方</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+double square(double num)
+{
+    return (num * num);
+}
+
+int main()
+{
+    int num;
+    double n;
+
+    printf("\n\n 函數：計算任意數的平方 :\n");
+    printf("------------------------------------------------\n");	
+
+    printf("輸入任意數以計算平方 : ");
+    scanf("%d", &amp;num);
+
+    n = square(num);
+    printf("%d 的平方是 : %.2f\n", num, n); 
+
+    return 0;
+}
+</pre>
+<p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="361" src="./../images/螢幕擷取畫面 2023-12-14 111.png" width="400"/></a></p>
+<p><video controls="controls" height="630" poster="/images/練習1.mp4" width="1008">
+<source src="./../images/練習1.mp4" type="video/mp4"/></video></p>
+<p></p>
+<br />w7 << <a href='w7.html'>Previous</a> <a href='c_ex.html'>Next</a> >> c_ex</div>
         
     <!-- footer -->
       <div class="container">

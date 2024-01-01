@@ -1,0 +1,754 @@
+<!DOCTYPE html><html>
+        <head>
+        <title>cmsite</title>
+        <meta charset="utf-8">
+<meta property="head" content="H2">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/magnific-popup.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/jquery-ui.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/aos.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/style.css">
+        <link rel="shortcut icon" href="./../cmsimde/static/favicons.png">
+        
+        <style type='text/css'>
+            .site-section {
+            background-color: #FFFF;
+            padding: 40px 40px;
+            }
+            body > div > div.dropdown.open {
+                display: block;
+            }
+        </style>
+    
+        <!-- <script src="./../cmsimde/static/jquery.js"></script> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="./../cmsimde/static/tipuesearch/css/normalize.min.css">
+        <script src="./../cmsimde/static/tipuesearch/tipuesearch_set.js"></script>
+        <script src="tipuesearch_content.js"></script>
+        <link rel="stylesheet" href="./../cmsimde/static/tipuesearch/css/tipuesearch.css">
+        <script src="./../cmsimde/static/tipuesearch/tipuesearch.js"></script>
+        <!-- for Wink3 客製化關閉 -->
+        <!--
+        <link rel="stylesheet" type="text/css" href="./../cmsimde/static/winkPlayer.css" />
+        <script type="text/javascript" src="./../cmsimde/static/winkPlayer.js"></script>
+        -->
+        <script>
+            /* original tipuesearch
+            $(document).ready(function() {
+                 $('#tipue_search_input').tipuesearch();
+            });
+            */
+            // customed doSearch
+            function doSearch() {
+                $('#tipue_search_input').tipuesearch({
+                    newWindow: true, 
+                    minimumLength: 2,
+                    wholeWords: false, // for search 中文
+                });
+            }
+            $(document).ready(doSearch);
+        </script>
+        
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushBash.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushDiff.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJava.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPython.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushHaxe.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushXml.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushLua.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushMojo.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCpp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCss.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushDart.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushRust.js"></script>
+<link type="text/css" rel="stylesheet" href="./../cmsimde/static/syntaxhighlighter/css/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<!-- 暫時不用
+<script src="./../cmsimde/static/fengari-web.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/Cango-13v08-min.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/CangoAxes-4v01-min.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/gearUtils-05.js"></script>
+-->
+<!-- for Brython 暫時不用
+<script src="https://scrum-3.github.io/web/brython/brython.js"></script>
+<script src="https://scrum-3.github.io/web/brython/brython_stdlib.js"></script>
+-->
+<style>
+img.add_border {
+    border: 3px solid blue;
+}
+</style>
+
+</head>
+<body>
+<div class='container'><nav>
+        
+    <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+            <header class="site-navbar py-4 bg-white" role="banner">
+              <div class="container">
+                <div class="row align-items-center">
+                <h1>41223208 cp2023</h1>
+                <div class="pl-4">
+                    <form>
+                    <input type="text" placeholder="Search" name="q" id="tipue_search_input" pattern=".{2,}" title="At least 2 characters" required>
+                    </form>
+                </div>
+                  <!-- <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">41223208 cp2023</a></h1> 
+                  </div>
+                  -->
+                  <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+    <ul class='site-menu js-clone-nav mr-auto d-none d-lg-block'>
+                        <li class="active has-children"><a href="index.html">Home</a>
+                        <ul class="dropdown">
+                            <li><a href="sitemap.html">SMap</a></li>
+                            <li><a href="./../reveal/index.html">reveal</a></li>
+                            <li><a href="./../blog/index.html">blog</a></li>
+                        </ul>
+                      </li>
+                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='ANSIC.html'>ANSIC</a><li class='has-children'><a href='c_ex.html'>c_ex</a><ul class='dropdown'><li><a href='練習一.html'>練習一</a><li><a href='練習二.html'>練習二</a></li></ul><li><a href='w11.html'>w11</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a></li>
+                      </ul>
+                </nav>
+              </div>
+              <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+              </div>
+
+            </div>
+          </div>
+          
+        </header>
+    <div id="tipue_search_content">練習一 << <a href='練習一.html'>Previous</a> <a href='w11.html'>Next</a> >> w11<br /><h1>練習二</h1>
+<p><strong>1.將兩個數位相乘</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+
+/* 乘法計算兩個浮點數 */
+int main()
+{
+    float this_is_a_number1, this_is_a_number2, total;
+    
+    printf("請輸入一個數字：\n ");
+    scanf("%f", &amp;this_is_a_number1); /* 讀取數字 */
+    printf("你輸入了 %f\n", this_is_a_number1);
+    
+    printf("請再輸入一個數字：\n");
+    scanf("%f", &amp;this_is_a_number2); /* 讀取數字 */
+    printf("你輸入了 %f\n", this_is_a_number2);
+    
+    total = this_is_a_number1 * this_is_a_number2; /* 乘法運算 */
+    printf("兩數的積為 %f\n", total);
+    
+    return 0;
+}
+</pre>
+<p><img alt="" height="377" src="./../images/螢幕擷取畫面 2024-01-02 040406.png" width="400"/></p>
+<p><strong>2.數字的總和</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+
+/* 演示使用 for 迴圈 */
+int main()
+{
+    float this_is_a_number, total;
+    int i;
+
+    total = 0;
+
+    /* for 迴圈執行 10 次 */
+    for (i = 0; i &lt; 10; i++)
+    {
+        printf("請輸入一個數字：\n ");
+        scanf("%f", &amp;this_is_a_number); /* 讀取數字 */
+        total = total + this_is_a_number;
+    }
+
+    printf("總和為 = %f\n", total);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="860" src="./../images/螢幕擷取畫面 2024-01-02 040751.png" width="400"/></p>
+<p><strong>3.判斷數字大小</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+/* if 操作的範例 */
+int main()
+{
+    int this_is_a_number;
+    printf("請輸入一個介於1和10之間的整數：\n ");
+    scanf("%d", &amp;this_is_a_number);
+    if (this_is_a_number &lt; 6)
+        printf("這個數字小於6；\n ");
+
+    printf("請輸入一個介於10和20之間的整數：\n ");
+    scanf("%d", &amp;this_is_a_number);
+    if (this_is_a_number &lt; 16)
+        printf("這個數字小於16\n ");
+    else
+        printf("這個數字大於15\n ");
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="227" src="./../images/螢幕擷取畫面 2024-01-02 041456.png" width="400"/></p>
+<p><strong>4.陣列</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+
+/* 展示使用陣列的程式 */
+int main()
+{
+    int arr1[8]; /* 定義包含8個整數的陣列 */
+    int i;
+
+    printf("輸入8個整數數字\n");
+    for (i = 0; i &lt; 8; i++)
+    {
+        scanf("%d", &amp;arr1[i]); /* 讀取到 arr1[i] */
+    }
+
+    printf("您的8個數字是\n");
+    for (i = 0; i &lt; 8; i++)
+    {
+        printf("%d ", arr1[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="410" src="./../images/螢幕擷取畫面 2024-01-02 041738.png" width="400"/></p>
+<p><strong>5.sizeof命令</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* 程式示範使用 sizeof 命令 */
+#include &lt;stdio.h&gt;
+#include &lt;limits.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    int sizeofint;
+    unsigned int sizeofunsint;
+    float sizeoffloat;
+    double sizeofdouble;
+
+    printf("int 的儲存空間大小：%lu 位元組\n", sizeof(sizeofint));
+    printf("unsigned int 的儲存空間大小：%lu 位元組\n", sizeof(sizeofunsint));
+    printf("float 的儲存空間大小：%lu 位元組\n", sizeof(sizeoffloat));
+    printf("double 的儲存空間大小：%lu 位元組\n", sizeof(sizeofdouble));
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="197" src="./../images/螢幕擷取畫面 2024-01-02 042139.png" width="400"/></p>
+<p><strong>6.陳述</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt; /* 展示使用 goto 陳述句 */
+int main()
+{
+    int i, testvalue;
+    testvalue = 2;
+    for (i = 0; i &lt; 10; i++)
+    {
+        if (testvalue == 2)
+            goto error;
+    }
+    printf("正常退出 for 迴圈\n");
+error:
+    printf("testvalue 為 %d\n", testvalue);
+}
+</pre>
+<p><img alt="" height="207" src="./../images/螢幕擷取畫面 2024-01-02 042637.png" width="400"/></p>
+<p><strong>7.介於1-5的整數</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+
+/* switch 操作的範例 */
+int main()
+{
+    int this_is_a_number;
+    printf("請輸入介於1和5之間的整數:\n ");
+    scanf("%d", &amp;this_is_a_number);
+
+    switch (this_is_a_number)
+    {
+    case 1:
+        printf("Case 1: 值為：%d", this_is_a_number);
+        break;
+    case 2:
+        printf("Case 2: 值為：%d", this_is_a_number);
+        break;
+    case 3:
+        printf("Case 3: 值為：%d", this_is_a_number);
+        break;
+    case 4:
+        printf("Case 4: 值為：%d", this_is_a_number);
+        break;
+    case 5:
+        printf("Case 5: 值為：%d", this_is_a_number);
+        break;
+    default:
+        printf("錯誤，值為：%d", this_is_a_number); /* 輸入的數字不在1到5之間 */
+    }
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="184" src="./../images/螢幕擷取畫面 2024-01-02 043021.png" width="400"/></p>
+<p><strong>8.陣列</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+int main() {
+    int arr1[100][100]; /* 假設陣列大小不超過100x100 */
+    int i, j, k, l;
+
+    printf("請輸入陣列的行數和列數（以空格分隔）：\n");
+    scanf("%d %d", &amp;k, &amp;l);
+
+    printf("請輸入陣列的元素：\n");
+    for (i = 0; i &lt; k; i++) {
+        for (j = 0; j &lt; l; j++) {
+            scanf("%d", &amp;arr1[i][j]);
+        }
+    }
+
+    printf("您的陣列是：\n");
+    for (i = 0; i &lt; k; i++) {
+        for (j = 0; j &lt; l; j++) {
+            printf("%d ", arr1[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="422" src="./../images/螢幕擷取畫面 2024-01-02 043432.png" width="400"/></p>
+<p><strong>9.函數</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+
+/* 這段程式碼演示了一個函式的作用 */
+/* 這個函式比較兩個數字並告訴哪一個更大 */
+/* 使用者輸入三個數字，得知它們之間的大小關係！ */
+
+void myfunction(int a, int b); /* 函式及其參數的宣告 */
+int first, second, third;
+
+int main()
+{
+    printf("請輸入第一個整數：");
+    scanf("%d", &amp;first);
+    printf("請輸入第二個整數：");
+    scanf("%d", &amp;second);
+    printf("請輸入第三個整數：");
+    scanf("%d", &amp;third);
+
+    myfunction(first, second);
+    myfunction(first, third);
+    myfunction(second, third);
+
+    return 0;
+}
+
+void myfunction(int a, int b)
+/* 這個函式在程式的 main{} 部分之外 */
+/* 這個函式僅比較兩個參數 a 和 b，並告訴哪個更大 */
+{
+    if (a &gt; b)
+        printf("%d 大於 %d\n", a, b);
+    else if (a &lt; b)
+        printf("%d 大於 %d\n", b, a);
+    else
+        printf("%d 和 %d 相等\n", a, b);
+}
+</pre>
+<p><img alt="" height="215" src="./../images/螢幕擷取畫面 2024-01-02 043701.png" width="400"/></p>
+<p><strong>10.函式</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* 返回答案的函式 */
+/* 找到學校一年級中成績最高的學生 */
+#include &lt;stdio.h&gt;
+
+double getmarks(double pupils[]);
+
+int main()
+{
+    double pupil;
+
+    /* 存放班級成績的數組在程式主體中預設 */
+    double marks[] = {10.6, 23.7, 67.9, 93.0, 64.2, 33.8, 57.5, 82.2, 50.7, 45.7};
+
+    /* 調用 getmarks 函式。該函式返回最高成績，然後將其存儲在 pupil 中 */
+    pupil = getmarks(marks);
+
+    printf("最高成績是 = %f", pupil);
+
+    return 0;
+}
+
+double getmarks(double pupils[])
+{
+    int i;
+    double highest;
+
+    highest = 0;
+
+    /* 依次遍歷所有學生，存儲最高成績 */
+    for (i = 0; i &lt; 10; ++i)
+    {
+        if (highest &lt; pupils[i])
+            highest = pupils[i];
+    }
+
+    return highest; /* 將 highest 中的值返回到調用函式的地方 */
+}
+</pre>
+<p><img alt="" height="201" src="./../images/螢幕擷取畫面 2024-01-02 044110.png" width="400"/></p>
+<p><strong>11.結構</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* 結構範例程式 */
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+/* 定義結構 */
+struct Student {
+    int id;
+    char name[16];
+    double percent;
+};
+
+int main() {
+    /* 定義兩個屬於 "Student" 類型的數據位置 */
+    struct Student s1, s2;
+
+    /* 為 s1 結構賦值 */
+    s1.id = 56;
+    strcpy(s1.name, "Rob Smith");
+    s1.percent = 67.4;
+
+    /* 輸出結構 s1 */
+    printf("\nid：%d", s1.id);
+    printf("\n姓名：%s", s1.name);
+    printf("\n百分比：%lf", s1.percent);
+
+    /* 為 s2 結構賦值 */
+    s2.id = 73;
+    strcpy(s2.name, "Mary Gallagher");
+    s2.percent = 93.8;
+
+    /* 輸出結構 s2 */
+    printf("\nid：%d", s2.id);
+    printf("\n姓名：%s", s2.name);
+    printf("\n百分比：%l
+</pre>
+<p><img alt="" height="314" src="./../images/螢幕擷取畫面 2024-01-02 044526.png" width="400"/></p>
+<p><strong>12.C語言</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* 這是我的第一個 C 語言程式 */
+int main()
+{
+    printf("我的第一個程式\n");
+    return 0;
+}
+</pre>
+<p><img alt="" height="137" src="./../images/螢幕擷取畫面 2024-01-02 044926.png" width="400"/></p>
+<p>13.輸入、輸出</p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+/* 讀取並顯示一個字符 */
+int main() {
+    char c;
+
+    printf("輸入字符：");
+    c = getchar(); /* 讀取輸入的字符 */
+    
+    printf("輸入的字符是：");
+    putchar(c); /* 輸出字符 */
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="130" src="./../images/螢幕擷取畫面 2024-01-02 045355.png" width="400"/></p>
+<p><strong>14.兩個數字的總和</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* 將兩個浮點數相加 */
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+
+int main() {
+    float this_is_a_number1, this_is_a_number2, total;
+
+    printf("請輸入一個數字：\n");
+    scanf("%f", &amp;this_is_a_number1); /* 讀取十進制數字 */
+    printf("您輸入的數字為 %f\n", this_is_a_number1);
+
+    printf("請再輸入一個數字：\n");
+    scanf("%f", &amp;this_is_a_number2); /* 讀取十進制數字 */
+    printf("您輸入的數字為 %f\n", this_is_a_number2);
+
+    total = this_is_a_number1 + this_is_a_number2; /* 將兩數相加 */
+    printf("總和為 %f\n", total);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="253" src="./../images/螢幕擷取畫面 2024-01-02 045757.png" width="400"/></p>
+<p><strong>15.字元開關範例</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+
+/* 使用字元開關的範例 */
+int main()
+{
+    char this_is_a_character;
+
+    printf("請輸入字元 a、b、c、d 或 e:\n ");
+    scanf("%c", &amp;this_is_a_character);
+
+    switch (this_is_a_character)
+    {
+    case 'a':
+        printf("輸入了 a");
+        break;
+    case 'b':
+        printf("輸入了 b");
+        break;
+    case 'c':
+        printf("輸入了 c");
+        break;
+    case 'd':
+        printf("輸入了 d");
+        break;
+    case 'e':
+        printf("輸入了 e");
+        break;
+    default:
+        printf("預設情況 ");
+    }
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="245" src="./../images/螢幕擷取畫面 2024-01-02 050646.png" width="400"/></p>
+<p><strong>16.字串操作</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+/* 示範字串操作的程式 strlen、strcpy、strcat、strcmp */
+int main() {
+    char borrow[7] = {'b', 'o', 'r', 'r', 'o', 'w', '\0'};
+    char string1[32] = "This is string1";
+    char string2[16] = "This is string2";
+    char string3[16];
+    int len;
+
+    /* 列印出字串的長度 */
+    len = strlen(string1);
+    printf("strlen(string1) : %d\n", len);
+    len = strlen(string2);
+    printf("strlen(string2) : %d\n", len);
+    len = strlen(string3);
+    printf("strlen(string3) : %d\n", len);
+
+    /* 將字串1複製到字串3中 */
+    strcpy(string3, string1);
+    printf("strcpy( string3, string1) : %s\n", string3);
+    len = strlen(string3);
+    printf("strlen(string3) after copy of string1 into string3 : %d\n", len);
+
+    /* 比較 string1 和 string3 （這些應該是相同的）*/
+    if (strcmp(string1, string3) == 0)
+        printf("字串相同\n");
+
+    /* 連接 string1 和 string2 */
+    strcat(string1, string2);
+    printf("strcat( string1, string2): %s\n", string1);
+
+    /* 連接後 string1 的總長度 */
+    len = strlen(string1);
+    printf("strlen(string1) after cat of string2
+</pre>
+<p><img alt="" height="231" src="./../images/螢幕擷取畫面 2024-01-02 050859.png" width="400"/></p>
+<p><strong>17.二維陣列</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+
+/* 二維數組測試範例 */
+int main() {
+    int arr1[7][8];
+    int i, j, k, l;
+
+    printf("輸入行數和列數（最多 7 行最多 8 列）\n");
+    scanf("%d %d", &amp;k, &amp;l);
+
+    if (k &gt; 7 || l &gt; 8) {
+        printf("錯誤 — 行數最多為 7 列數最多為 8\n");
+    } else {
+        printf("輸入陣列\n");
+        for (i = 0; i &lt; k; i++) {
+            for (j = 0; j &lt; l; j++) {
+                scanf("%d", &amp;arr1[i][j]);
+            }
+        }
+
+        printf("您的陣列是\n");
+        for (i = 0; i &lt; k; i++) {
+            for (j = 0; j &lt; l; j++) {
+                printf("%d ", arr1[i][j]);
+            }
+            printf("\n");
+        }
+    }
+
+    printf("陣列的第一行\n");
+    for (j = 0; j &lt; l; j++) {
+        printf("%d ", arr1[0][j]);
+    }
+    printf("\n");
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="385" src="./../images/螢幕擷取畫面 2024-01-02 051349.png" width="400"/></p>
+<p><strong>18.兩數相除</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+
+/* 兩個浮點數相除 */
+int main() {
+    float this_is_a_number1, this_is_a_number2, total;
+
+    printf("請輸入一個數字：\n");
+    scanf("%f", &amp;this_is_a_number1); /* 讀取數字 */
+    printf("您輸入了 %f\n", this_is_a_number1);
+
+    printf("請再輸入一個數字：\n ");
+    scanf("%f", &amp;this_is_a_number2); /* 讀取數字 */
+    printf("您輸入了 %f\n", this_is_a_number2);
+
+    total = this_is_a_number1 / this_is_a_number2; /* 除以數字 */
+    printf("商為 %f\n", total);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="365" src="./../images/螢幕擷取畫面 2024-01-02 052416.png" width="400"/></p>
+<p><strong>19.循環</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+
+/* 演示 do 循環 */
+int main() {
+    float this_is_a_number, total;
+    int i;
+    total = 0;
+    i = 0;
+
+    /* do 循環循環直到 i 的值達到 10 */
+    do {
+        printf("請輸入一個數字：\n ");
+        scanf("%f", &amp;this_is_a_number);
+        total = total + this_is_a_number;
+        i++;
+    } while (i &lt; 10);
+
+    printf("總和為 %f\n", total);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="334" src="./../images/螢幕擷取畫面 2024-01-02 053428.png" width="400"/></p>
+<p>20.顯示字元程序</p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 顯示字元數組使用的程序 */
+int main()
+{
+char arr2[10];/* 定義 10 個字元的數組 */
+int i;
+printf("enter 10 characters \n");
+for (i = 0;i &lt; 10;i++)
+{
+scanf("%c", &amp;arr2[i]);
+}
+printf("Your 10 characters are \n");
+for (i = 0;i &lt; 10;i++)
+{
+printf("%c ", arr2[i]);
+}
+printf("\n");
+}</pre>
+<p><img alt="" height="269" src="./../images/螢幕擷取畫面 2024-01-02 054026.png" width="400"/></p>
+<p><video controls="controls" height="630" poster="/images/可攜2.mp4" width="1008">
+<source src="./../images/可攜2.mp4" type="video/mp4"/></video></p>
+<br />練習一 << <a href='練習一.html'>Previous</a> <a href='w11.html'>Next</a> >> w11</div>
+        
+    <!-- footer -->
+      <div class="container">
+        <div class="row pt-3 mx-auto">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+      </div>
+    <!-- for footer -->
+    
+        </div> <!-- for site wrap -->
+            <!-- <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script> -->
+            <script src="../cmsimde/static/chimper/js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery-ui.js"></script>
+            <script src="../cmsimde/static/chimper/js/popper.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/owl.carousel.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.stellar.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.countdown.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.magnific-popup.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap-datepicker.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/aos.js"></script>
+            <!--
+            <script src="../cmsimde/static/chimper/js/typed.js"></script>
+                    <script>
+                    var typed = new Typed('.typed-words', {
+                    strings: ["Web Apps"," WordPress"," Mobile Apps"],
+                    typeSpeed: 80,
+                    backSpeed: 80,
+                    backDelay: 4000,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true
+                    });
+                    </script>
+            -->
+            <script src="../cmsimde/static/chimper/js/main.js"></script>
+        
+<!-- 啟用 LaTeX equations 編輯 -->
+  <!-- <script>
+  MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\(', '\)']]}
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>-->
+    </body></html>
+        

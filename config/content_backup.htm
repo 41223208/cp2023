@@ -1103,6 +1103,551 @@ int main()
 }
 </pre>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)"><img alt="" height="361" src="/images/螢幕擷取畫面 2023-12-14 111.png" width="400"/></a></p>
+<p><strong>11.用 C 語言編寫程式以建立和顯示單向鏈表</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 單向鏈表中節點的結構
+struct node {
+    int num;                // 節點的數據
+    struct node *nextptr;   // 指向下一個節點的地址
+} *stnode;                  // 指向開始節點的指針
+
+// 函數原型
+void createNodeList(int n); // 創建鏈表的函數
+void displayList();         // 顯示鏈表的函數
+
+// 主函數
+int main() {
+    int n;
+
+    // 顯示程序的目的
+    printf("\n\n 單向鏈表：創建並顯示單向鏈表：\n");
+    printf("-------------------------------------------------------------\n");
+
+    // 輸入鏈表的節點數量
+    printf(" 輸入節點的數量：");
+    scanf("%d", &amp;n);
+
+    // 創建具有n個節點的鏈表
+    createNodeList(n);
+
+    // 顯示輸入的鏈表數據
+    printf("\n 鏈表中輸入的數據：\n");
+    displayList();
+
+    return 0;
+}
+
+// 函數：創建具有n個節點的鏈表
+void createNodeList(int n) {
+    struct node *fnNode, *tmp;
+    int num, i;
+
+    // 為開始節點分配內存
+    stnode = (struct node *)malloc(sizeof(struct node));
+
+    // 檢查內存分配是否成功
+    if(stnode == NULL) {
+        printf(" 無法分配內存。");
+    } else {
+        // 從用戶輸入讀取開始節點的數據
+        printf(" 輸入第1個節點的數據：");
+        scanf("%d", &amp;num);
+        stnode-&gt;num = num;      
+        stnode-&gt;nextptr = NULL; // 將下一個指針設置為NULL
+        tmp = stnode;
+
+        // 創建n個節點並將它們添加到鏈表中
+        for(i = 2; i &lt;= n; i++) {
+            fnNode = (struct node *)malloc(sizeof(struct node));
+
+            // 檢查內存分配是否成功
+            if(fnNode == NULL) {
+                printf(" 無法分配內存。");
+     
+</pre>
+<p><img alt="" height="341" src="/images/螢幕擷取畫面 2024-01-02 133542.png" width="400"/></p>
+<p><strong>12.實現樹結構的 C 程式</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含必要的頭文件
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 二叉樹節點的結構
+struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+};
+
+// 函數：創建一個新節點
+struct TreeNode* createNode(int value) {
+    // 為一個新的TreeNode分配內存
+    struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+
+    // 檢查內存分配是否成功
+    if (newNode != NULL) {
+        // 初始化節點數據
+        newNode-&gt;data = value;
+        newNode-&gt;left = NULL;
+        newNode-&gt;right = NULL;
+    }
+
+    // 返回創建的節點
+    return newNode;
+}
+
+// 函數：將節點插入二叉樹
+struct TreeNode* insertNode(struct TreeNode* root, int value) {
+    // 如果樹為空，則創建一個新節點
+    if (root == NULL) {
+        return createNode(value);
+    }
+
+    // 如果值小於根的數據，則插入到左子樹中
+    if (value &lt; root-&gt;data) {
+        root-&gt;left = insertNode(root-&gt;left, value);
+    }
+    // 如果值大於根的數據，則插入到右子樹中
+    else if (value &gt; root-&gt;data) {
+        root-&gt;right = insertNode(root-&gt;right, value);
+    }
+
+    // 返回修改後的根
+    return root;
+}
+
+// 函數：執行二叉樹的中序遍歷
+void inOrderTraversal(struct TreeNode* root) {
+    // 中序遍歷樹：左子樹、根、右子樹
+    if (root != NULL) {
+        inOrderTraversal(root-&gt;left);
+        printf("%d ", root-&gt;data);
+        inOrderTraversal(root-&gt;right);
+    }
+}
+
+// 函數：釋放分配給二叉樹的內存
+void freeTree(struct TreeNode* root) {
+    // 遞歸釋放整棵樹的內存
+    if (root != NULL) {
+        freeTree(root-&gt;left);
+        freeTree(root-&gt;right);
+        free(root);
+    }
+}
+
+int main() {
+    // 初始化二叉樹的根
+    struct TreeNode* root = NULL;
+    int nodeValue;
+    char choice;
+
+    // 用戶輸入循環，將節點插入二叉樹
+    do {
+        // 提示用戶輸入要插入二叉樹的值
+        printf("輸入要插入二叉樹的值：");
+        scanf("%d", &amp;nodeValue);
+
+        // 將值插入二叉樹
+        root = insertNode(root, nodeValue);
+
+        // 問用戶是否要插入另一個節點
+        printf("是否要插入另一個節點？(y/n)：");
+        scanf(" %c", &amp;choice);
+
+    } while (choice == 'y' || choice == 'Y');
+
+    // 顯示二叉樹的中序遍歷
+    printf("\n二叉樹的中序遍歷：");
+    inOrderTraversal(root);
+    printf("\n");
+
+    // 釋放分配給二叉樹的內存
+    freeTree(root);
+
+    // 返回0以表示成功執行
+    return 0;
+}
+</pre>
+<p><img alt="" height="248" src="/images/螢幕擷取畫面 2024-01-02 134036.png" width="400"/></p>
+<p><strong>13.實現哈希表的 C 程式</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含必要的頭文件
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define TABLE_SIZE 10
+
+// 用於鍵值對的結構
+struct KeyValuePair {
+    char key[50];
+    char value[50];
+    struct KeyValuePair* next;
+};
+
+// 用於哈希表的結構
+struct HashTable {
+    int size;
+    struct KeyValuePair** table;
+};
+
+// 字符串的哈希函數（djb2算法）
+unsigned long hashFunction(const char* str) {
+    unsigned long hash = 5381;
+    int c;
+
+    while ((c = *str++) != '\0') {
+        hash = ((hash &lt;&lt; 5) + hash) + c; // hash * 33 + c
+    }
+
+    return hash;
+}
+
+// 函數：創建一個新的鍵值對
+struct KeyValuePair* createKeyValuePair(const char* key, const char* value) {
+    struct KeyValuePair* newPair = (struct KeyValuePair*)malloc(sizeof(struct KeyValuePair));
+    if (newPair != NULL) {
+        strcpy(newPair-&gt;key, key);
+        strcpy(newPair-&gt;value, value);
+        newPair-&gt;next = NULL;
+    }
+    return newPair;
+}
+
+// 函數：創建一個新的哈希表
+struct HashTable* createHashTable(int size) {
+    struct HashTable* newTable = (struct HashTable*)malloc(sizeof(struct HashTable));
+    if (newTable != NULL) {
+        newTable-&gt;size = size;
+        newTable-&gt;table = (struct KeyValuePair**)calloc(size, sizeof(struct KeyValuePair*));
+    }
+    return newTable;
+}
+
+// 函數：將一個鍵值對插入哈希表
+void insert(struct HashTable* hashTable, const char* key, const char* value) {
+    unsigned long index = hashFunction(key) % hashTable-&gt;size;
+
+    // 創建一個新的鍵值對
+    struct KeyValuePair* newPair = createKeyValuePair(key, value);
+
+    // 在鏈表的開頭插入新對
+    newPair-&gt;next = hashTable-&gt;table[index];
+    hashTable-&gt;table[index] = newPair;
+}
+
+// 函數：檢索與鍵關聯的值
+const char* retrieve(struct HashTable* hashTable, const char* key) {
+    unsigned long index = hashFunction(key) % hashTable-&gt;size;
+    struct KeyValuePair* current = hashTable-&gt;table[index];
+
+    // 遍歷索引處的鏈表
+    while (current != NULL) {
+        if (strcmp(current-&gt;key, key) == 0) {
+            return current-&gt;value; // 找到鍵，返回值
+        }
+        current = current-&gt;next;
+    }
+    return "未找到鍵"; // 未找到鍵
+}
+
+// 函數：顯示哈希表的內容
+void displayHashTable(struct HashTable* hashTable) {
+    for (int i = 0; i &lt; hashTable-&gt;size; i++) {
+        printf("[%d] -&gt; ", i);
+
+        struct KeyValuePair* current = hashTable-&gt;table[i];
+        while (current != NULL) {
+            printf("(%s, %s) -&gt; ", current-&gt;key, current-&gt;value);
+            current = current-&gt;next;
+        }
+
+        printf("NULL\n");
+    }
+}
+
+// 函數：釋放分配給哈希表的內存
+void freeHashTable(struct HashTable* hashTable) {
+    for (int i = 0; i &lt; hashTable-&gt;size; i++) {
+        struct KeyValuePair* current = hashTable-&gt;table[i];
+        while (current != NULL) {
+            struct KeyValuePair* temp = current;
+            current = current-&gt;next;
+            free(temp);
+        }
+    }
+
+    free(hashTable-&gt;table);
+    free(hashTable);
+}
+
+int main() {
+    struct HashTable* hashTable = createHashTable(TABLE_SIZE);
+
+    // 插入鍵值對
+    insert(hashTable, "Red", "#ff0000");
+    insert(hashTable, "Green", "008000");
+    insert(hashTable, "Blue", "#0000FF");
+    insert(hashTable, "Yellow", "#FFFF00");
+    insert(hashTable, "Orange", "#FFA500");
+
+    printf("初始哈希表:\n");
+    displayHashTable(hashTable);
+    printf("\n");
+
+    // 檢索並打印特定鍵的值
+    printf("鍵'Red'的值：%s\n", retrieve(hashTable, "Red"));
+    printf("鍵'Yellow'的值：%s\n", retrieve(hashTable, "Yellow"));
+    printf("鍵'White'的值：%s\n", retrieve(hashTable, "White"));
+    printf("\n");
+
+    // 釋放分配的內存
+    freeHashTable(hashTable);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="382" src="/images/螢幕擷取畫面 2024-01-02 134812.png" width="400"/></p>
+<p><strong>14.C For 迴圈</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt; // 包含標準輸入/輸出頭文件。
+
+int main() 
+{
+   int i, j; // 声明用于迭代的變量。
+   char alph = 'A'; // 初始化一個字符變量為 'A'。
+   int n, blk; // 声明用戶輸入和區塊計數的變量。
+   int ctr = 1; // 初始化計數器。
+
+   printf("輸入金字塔中字母的數量（小於26）：");
+   scanf("%d", &amp;n); // 提示用戶輸入並將其存儲在變量 'n' 中。
+
+   for (i = 1; i &lt;= n; i++) // 外部循環，用於行。
+   {
+       for(blk = 1; blk &lt;= n - i; blk++) // 循環以在字母之前打印空格。
+           printf("  ");
+
+       for (j = 0; j &lt;= (ctr / 2); j++) // 循環以按升序打印字母。
+       {
+           printf("%c ", alph++);
+       }
+
+       alph = alph - 2; // 在打印一半後減少字符。
+
+       for (j = 0; j &lt; (ctr / 2); j++) // 循環以按降序打印字母。
+       {
+           printf("%c ", alph--);
+       }
+
+       ctr = ctr + 2; // 為下一行增加計數器。
+       alph = 'A'; // 將字符重置為 'A' 以供下一行使用。
+
+       printf("\n"); // 在打印一行後移到下一行。
+   }
+    return 0;  // 表示程序已成功執行。
+}
+</pre>
+<p><img alt="" height="174" src="/images/螢幕擷取畫面 2024-01-02 135039.png" width="400"/></p>
+<p><strong>15.編寫一個 C 程式來反轉給定整數的數位</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+int reverse(int n) {
+    int d, y = 0;
+    while (n) {
+        d = n % 10;
+        if ((n &gt; 0 &amp;&amp; y &gt; (0x7fffffff - d) / 10) ||
+            (n &lt; 0 &amp;&amp; y &lt; ((signed)0x80000000 - d) / 10)) {
+            return 0;  
+        }
+        y = y * 10 + d;
+        n = n / 10;
+    }
+    return y;  
+}
+
+int main(void)
+{
+    int i = 123;
+    printf("原始整數: %d  ", i);
+    printf("\n反轉後的整數: %d  ", reverse(i));
+    i = 208478933;
+    printf("\n原始整數: %d  ", i);
+    printf("\n反轉後的整數: %d  ", reverse(i));
+    i = -73634;
+    printf("\n原始整數: %d  ", i);
+    printf("\n反轉後的整數: %d  ", reverse(i));
+    return 0;
+}
+</pre>
+<p><img alt="" height="260" src="/images/螢幕擷取畫面 2024-01-02 135417.png" width="400"/></p>
+<p><strong>16.C 遞歸</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;
+ 
+int term;
+int fibonacci(int prNo, int num);
+ 
+void main() 
+{
+   static int prNo = 0, num = 1;
+	printf("\n\n 遞歸 : 打印斐波那契數列 :\n");
+	printf("-----------------------------------------\n");   
+ 
+   printf(" 輸入要打印的數列項數 (&lt; 20) : ");
+   scanf("%d", &amp;term);
+ printf(" 數列為 :\n"); 
+   printf(" 1  ");
+   fibonacci(prNo, num);
+    printf("\n\n");
+}
+ 
+int fibonacci(int prNo, int num) 
+{
+   static int i = 1;
+   int nxtNo;
+ 
+   if (i == term)
+      return (0);
+   else 
+   {
+      nxtNo = prNo + num;
+      prNo = num;
+      num = nxtNo;
+      printf("%d  ", nxtNo);
+ 
+      i++;
+      fibonacci(prNo, num); // 遞歸，調用 fibonacci 函數本身
+   }
+   return (0);
+}
+</pre>
+<p><img alt="" height="182" src="/images/螢幕擷取畫面 2024-01-02 135809.png" width="400"/></p>
+<p><strong>17.編寫一個 C 程式以使用內聯函數計算兩個整數的最小值</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+inline int min(int x, int y) {
+  return (x &lt; y) ? x : y;
+}
+
+int main() {
+  int a = 110, b = 120;
+  printf("%d 和 %d 的最小值是 %d\n", a, b, min(a, b));
+  a = -110, b = -120;
+  printf("%d 和 %d 的最小值是 %d\n", a, b, min(a, b));
+  return 0;
+}
+</pre>
+<p><img alt="" height="177" src="/images/螢幕擷取畫面 2024-01-02 140035.png" width="400"/></p>
+<p><strong>18.創建名為“Employee”的結構來存儲員工詳細資訊，例如員工ID、姓名和工資。編寫程式，輸入三名員工的數據，找到薪水最高的員工，並顯示他們的資訊。</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+// 定義結構 "Employee"
+struct Employee {
+    int employeeID;
+    char name[50];
+    float salary;
+};
+
+int main() {
+    // 声明變量以存儲三名員工的詳細信息
+    struct Employee employee1, employee2, employee3;
+
+    // 輸入第一名員工的詳細信息
+    printf("輸入第一名員工的詳細信息:\n");
+    printf("員工ID: ");
+    scanf("%d", &amp;employee1.employeeID);
+    printf("姓名: ");
+    scanf("%s", employee1.name); // 假設名字不包含空格
+    printf("薪資: ");
+    scanf("%f", &amp;employee1.salary);
+
+    // 輸入第二名員工的詳細信息
+    printf("\n輸入第二名員工的詳細信息:\n");
+    printf("員工ID: ");
+    scanf("%d", &amp;employee2.employeeID);
+    printf("姓名: ");
+    scanf("%s", employee2.name);
+    printf("薪資: ");
+    scanf("%f", &amp;employee2.salary);
+
+    // 輸入第三名員工的詳細信息
+    printf("\n輸入第三名員工的詳細信息:\n");
+    printf("員工ID: ");
+    scanf("%d", &amp;employee3.employeeID);
+    printf("姓名: ");
+    scanf("%s", employee3.name);
+    printf("薪資: ");
+    scanf("%f", &amp;employee3.salary);
+
+    // 找到薪資最高的員工
+    struct Employee highestSalaryEmployee;
+    if (employee1.salary &gt;= employee2.salary &amp;&amp; employee1.salary &gt;= employee3.salary) {
+        highestSalaryEmployee = employee1;
+    } else if (employee2.salary &gt;= employee1.salary &amp;&amp; employee2.salary &gt;= employee3.salary) {
+        highestSalaryEmployee = employee2;
+    } else {
+        highestSalaryEmployee = employee3;
+    }
+
+    // 顯示薪資最高的員工信息
+    printf("\n薪資最高的員工:\n");
+    printf("員工ID: %d\n", highestSalaryEmployee.employeeID);
+    printf("姓名: %s\n", highestSalaryEmployee.name);
+    printf("薪資: %.2f\n", highestSalaryEmployee.salary);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="507" src="/images/螢幕擷取畫面 2024-01-02 140510.png" width="400"/></p>
+<p><strong>19.編寫一個 C 程式來讀取候選人的年齡並確定他是否有資格投票</strong></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;   // 包含標準輸入/輸出頭文件。
+
+void main()
+{
+  int vote_age;   // 声明一個整數變量 'vote_age' 以存儲候選人的年齡。
+
+  printf("輸入候選人的年齡 : ");   // 提示用戶輸入候選人的年齡。
+  scanf("%d",&amp;vote_age);   // 讀取並將用戶的輸入存儲在 'vote_age' 中。
+
+  if (vote_age &lt; 18)   // 檢查 'vote_age' 是否小於18。
+  {
+    printf("對不起，您無資格投票。\n");   // 印出一條消息，指示候選人無資格投票。
+    printf("您將在 %d 年後有資格投票。\n", 18 - vote_age);   // 印出候選人有資格投票所需的年數。
+  }
+  else
+    printf("恭喜！您有資格投票。\n");   // 印出一條消息，指示候選人有資格投票。
+}
+</pre>
+<p><img alt="" height="96" src="/images/螢幕擷取畫面 2024-01-02 140751.png" width="400"/></p>
+<p><strong>20.</strong><span><strong>編寫一個 C 程式以使用哈希 （#） 列印塊 F，其中 F 的高度為 6 個字元，寬度為 5 個字元和 4 個字元。</strong></span></p>
+<p><span><strong></strong></span></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+int main() 
+{
+    // 打印一行井號
+    printf("######\n");
+    
+    // 打印一個單獨的井號
+    printf("#\n");
+    
+    // 打印一個單獨的井號
+    printf("#\n");
+    
+    // 打印一行井號
+    printf("#####\n");
+    
+    // 打印一個單獨的井號
+    printf("#\n");
+    
+    // 打印一個單獨的井號
+    printf("#\n");
+    
+    // 打印一個單獨的井號
+    printf("#\n");
+
+    return(0);
+}
+</pre>
+<p><img alt="" height="349" src="/images/螢幕擷取畫面 2024-01-02 141253.png" width="400"/></p>
 <p><video controls="controls" height="630" poster="/images/練習1.mp4" width="1008">
 <source src="/images/練習1.mp4" type="video/mp4"/></video></p>
 <p></p>
@@ -2566,8 +3111,9 @@ void draw_roc_flag(gdImagePtr img) {
  
   }</pre>
 <p><img alt="" height="267" src="/images/roc_flag_in_gd.png" width="400"/></p>
-<br/><br/><br/><br/><br/><video controls="controls" height="630" width="1008">
-<source src="/images/更改版國旗.mp4" type="video/mp4"/></video>w16
+<p><br/><br/><br/><br/><br/><video controls="controls" height="630" width="1008">
+<source src="/images/更改版國旗.mp4" type="video/mp4"/></video></p>
+<h1>w16</h1>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;gd.h&gt;
 #include &lt;stdio.h&gt;
 #include &lt;math.h&gt;
@@ -2731,7 +3277,7 @@ int main() {
     return 0;
 }
 </pre>
-<br/><br/><img alt="" height="300" src="/images/gdh.png" width="400"/><br/>Brython
+<p><br/><br/><br/><img alt="" height="300" src="/images/gdh.png" width="400"/><br/>Brython</p>
 <h6><strong><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></strong></h6>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
